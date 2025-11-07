@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_BDY" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_M_BDY"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SLS_T_BDYPT">
+    <resourceUri>SLS_T_BDYPT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="BDPID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="BDYPT"/>
+      <viewAttribute id="NOINJ"/>
+      <viewAttribute id="SIDE_"/>
+      <viewAttribute id="BPDES"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SLS_T_BDYPT"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="BDPID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Primary key - unique incident identifier"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BDPID"/>
+    </attribute>
+    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Foreign key of the SLS_T_INJEM table"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="BDYPT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Body Parts"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BDYPT"/>
+    </attribute>
+    <attribute id="NOINJ" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Nature of injury"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NOINJ"/>
+    </attribute>
+    <attribute id="SIDE_" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="side"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SIDE_"/>
+    </attribute>
+    <attribute id="BPDES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Body Parts Description"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BPDES"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="195"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

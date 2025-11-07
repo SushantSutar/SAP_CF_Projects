@@ -1,0 +1,72 @@
+PROCEDURE "prCREATEUPDATEINJEM"(
+    IN INJID       BIGINT,
+    IN EMPID       NVARCHAR(40),
+    IN EMPNM       NVARCHAR(100),
+    IN SUPVR       NVARCHAR(100),
+    IN TPHNE       NVARCHAR(20),
+    IN CLSSF       VARCHAR(100), 
+    IN LDWRK       DATE,
+    IN FDABS       DATE,
+    IN OCCIL       VARCHAR(1),   
+    IN RTWRK       VARCHAR(1),  
+    IN RGTIM       TIMESTAMP,
+    IN NAINC       NVARCHAR(255),  
+    IN CAUSE       NVARCHAR(255),
+    OUT OINJID     BIGINT
+ )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+--    READS SQL DATA 
+   AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+    DECLARE COLUMN_ID INTEGER;
+	DECLARE QU NVARCHAR(150);
+	DECLARE SEQ NVARCHAR(100);
+
+
+    IF :INJID = 0 THEN
+        -- Insert new injury record
+        INSERT INTO SLS_T_INJEM (
+            EMPID, EMPNM, SUPVR, TPHNE, CLSSF, LDWRK, FDABS, OCCIL, RTWRK, RGTIM, NAINC, CAUSE,
+            ISDEL, CRTDT, CRTTM, CRTBY, CHNDT, CHNTM, CHNBY
+        ) VALUES (
+            :EMPID, :EMPNM, :SUPVR, :TPHNE, :CLSSF, :LDWRK, :FDABS, :OCCIL, :RTWRK, :RGTIM, :NAINC, :CAUSE,
+            '0', CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'), CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER')
+        );
+
+    
+         
+    SELECT '"_SYS_SEQUENCE_'|| COLUMN_ID||'_#0_#"' INTO SEQ FROM TABLE_COLUMNS WHERE
+	(TABLE_NAME='SLS_T_INJEM') AND COLUMN_NAME='INJID';
+    QU :='select '||SEQ||'.CURRVAL from DUMMY';
+   EXECUTE IMMEDIATE QU INTO OINJID;
+
+        
+    ELSE
+        -- Update existing injury record
+        UPDATE SLS_T_INJEM
+        SET 
+            EMPID = :EMPID,
+            EMPNM = :EMPNM,
+            SUPVR = :SUPVR,
+            TPHNE = :TPHNE,
+            CLSSF = :CLSSF,
+            LDWRK = :LDWRK,
+            FDABS = :FDABS,
+            OCCIL = :OCCIL,
+            RTWRK = :RTWRK,
+            RGTIM = :RGTIM,
+            NAINC = :NAINC,
+            CAUSE = :CAUSE,
+            CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+            CHNDT = CURRENT_DATE,
+            CHNTM = CURRENT_TIME
+        WHERE INJID = :INJID AND ISDEL = '0';
+
+        OINJID = :INJID;
+    END IF;
+END

@@ -1,0 +1,60 @@
+PROCEDURE "prCREATEUPDATEBDYPT"(
+    IN BDPID       BIGINT,
+    IN EMPID       NVARCHAR(40),
+    IN BDYPT       NVARCHAR(100),
+    IN NOINJ       NVARCHAR(255),
+    IN SIDE_       NVARCHAR(10),
+    IN BPDES       NVARCHAR(500),
+    OUT oBDPID BIGINT
+ )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+--    READS SQL DATA 
+   AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+
+	DECLARE COLUMN_ID INTEGER;
+	DECLARE QU NVARCHAR(150);
+	DECLARE SEQ NVARCHAR(100);
+
+    IF :BDPID = 0 THEN
+        -- Insert new Body Parts record
+        INSERT INTO SLS_T_BDYPT (
+            EMPID, BDYPT, NOINJ, SIDE_, BPDES,
+            ISDEL, CRTDT, CRTTM, CRTBY, CHNDT, CHNTM, CHNBY
+        ) VALUES (
+            :EMPID, :BDYPT, :NOINJ, :SIDE_, :BPDES,
+            '0', CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'), CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER')
+        );
+        -- SELECT CURRENT_IDENTITY_VALUE() INTO oBDPID FROM DUMMY;
+ 
+        
+SELECT '"_SYS_SEQUENCE_'|| COLUMN_ID||'_#0_#"' INTO SEQ FROM TABLE_COLUMNS WHERE
+	(TABLE_NAME='SLS_T_BDYPT') AND COLUMN_NAME='BDPID';
+    QU :='select '||SEQ||'.CURRVAL from DUMMY';
+  EXECUTE IMMEDIATE QU INTO oBDPID;
+
+       
+    ELSE
+        -- Update existing Body Parts record
+        UPDATE SLS_T_BDYPT
+        SET 
+            EMPID = :EMPID,
+            BDYPT = :BDYPT, 
+            NOINJ = :NOINJ,
+            SIDE_ = :SIDE_,
+            BPDES = :BPDES,
+            CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+            CHNDT = CURRENT_DATE,
+            CHNTM = CURRENT_TIME
+        WHERE BDPID = :BDPID AND ISDEL = '0';
+        
+        oBDPID:=:BDPID;
+ 
+
+    END IF;
+END

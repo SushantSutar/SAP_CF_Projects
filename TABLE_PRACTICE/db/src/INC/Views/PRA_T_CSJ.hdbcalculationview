@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PRA_T_CSJ" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="PRA_M_CSJ"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CUS">
+    <resourceUri>CUS</resourceUri>
+  </DataSource>
+  <DataSource id="SALES">
+    <resourceUri>SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CUSID"/>
+      <viewAttribute id="CNAME"/>
+      <viewAttribute id="CNTRY"/>
+      <viewAttribute id="CUSTP"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CUS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="CUSID"/>
+      <viewAttribute id="PROID"/>
+      <viewAttribute id="QANTY"/>
+      <viewAttribute id="ODATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALES"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CUSID"/>
+      <viewAttribute id="CNAME"/>
+      <viewAttribute id="CNTRY"/>
+      <viewAttribute id="CUSTP"/>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="PROID"/>
+      <viewAttribute id="QANTY"/>
+      <viewAttribute id="ODATE"/>
+      <viewAttribute hidden="true" id="JOIN$CUSID$CUSID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSID" source="CUSID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNAME" source="CNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNTRY" source="CNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTP" source="CUSTP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSID$CUSID" source="CUSID"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDID" source="ORDID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROID" source="PROID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QANTY" source="QANTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ODATE" source="ODATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CUSID$CUSID" source="CUSID"/>
+    </input>
+    <joinAttribute name="JOIN$CUSID$CUSID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CUSID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSID"/>
+    </attribute>
+    <attribute id="CNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Name - full name of the Customer"/>
+      <keyMapping columnObjectName="Join_1" columnName="CNAME"/>
+    </attribute>
+    <attribute id="CNTRY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY Name"/>
+      <keyMapping columnObjectName="Join_1" columnName="CNTRY"/>
+    </attribute>
+    <attribute id="CUSTP" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="B2B / B2C"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTP"/>
+    </attribute>
+    <attribute id="ORDID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Primary key - unique incident identifier"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDID"/>
+    </attribute>
+    <attribute id="PROID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Foreign key of the PRODUCTS table"/>
+      <keyMapping columnObjectName="Join_1" columnName="PROID"/>
+    </attribute>
+    <attribute id="QANTY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Quantity ordered"/>
+      <keyMapping columnObjectName="Join_1" columnName="QANTY"/>
+    </attribute>
+    <attribute id="ODATE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date of the order"/>
+      <keyMapping columnObjectName="Join_1" columnName="ODATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-22" y="280"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="223" y="280"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="185"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

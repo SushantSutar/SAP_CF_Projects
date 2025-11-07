@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_INJ" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_M_INJ"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SLS_T_INJEM">
+    <resourceUri>SLS_T_INJEM</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="EMPNM"/>
+      <viewAttribute id="SUPVR"/>
+      <viewAttribute id="TPHNE"/>
+      <viewAttribute id="CLSSF"/>
+      <viewAttribute id="LDWRK"/>
+      <viewAttribute id="FDABS"/>
+      <viewAttribute id="OCCIL"/>
+      <viewAttribute id="RTWRK"/>
+      <viewAttribute id="RGTIM"/>
+      <viewAttribute id="NAINC"/>
+      <viewAttribute id="CAUSE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SLS_T_INJEM"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="EMPID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Employee ID - references employee master record"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="EMPNM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Employee Name - full name of the employee"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EMPNM"/>
+    </attribute>
+    <attribute id="SUPVR" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Supervisor Name - direct supervisor of the employee"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SUPVR"/>
+    </attribute>
+    <attribute id="TPHNE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Phone Number - contact number of the employee"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TPHNE"/>
+    </attribute>
+    <attribute id="CLSSF" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Incident Classification - category or type of incident"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CLSSF"/>
+    </attribute>
+    <attribute id="LDWRK" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Day Worked - last day employee worked before incident/absence"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LDWRK"/>
+    </attribute>
+    <attribute id="FDABS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="First Day of Absence - first day employee missed work due to incident"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FDABS"/>
+    </attribute>
+    <attribute id="OCCIL" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Occupational Illness (Y/N) - indicates if incident is a work-related illness"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OCCIL"/>
+    </attribute>
+    <attribute id="RTWRK" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Return to Work (Y/N) - indicates if employee has returned to work"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RTWRK"/>
+    </attribute>
+    <attribute id="RGTIM" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Regular Work Time - usual work time of employee"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RGTIM"/>
+    </attribute>
+    <attribute id="NAINC" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Nature of Incident - description of what happened"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NAINC"/>
+    </attribute>
+    <attribute id="CAUSE" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Causes - contributing factors or causes of the incident"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CAUSE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="212"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

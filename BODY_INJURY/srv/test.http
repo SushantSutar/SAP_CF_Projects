@@ -1,0 +1,8 @@
+###
+POST http://localhost:4004/odata/v4/test-portal-am/rlQ2Em7VGztsJeed
+Content-Type: application/json
+ 
+{
+  "D4OXYPALUYAIDNSO": "{\"INJID\":0,\"EMPID\":\"SLS1386\",\"EMPNM\":\"John Doe\",\"SUPVR\":\"Jane Smith\",\"TPHNE\":\"9876543210\",\"CLSSF\":\"Injury\",\"LDWRK\":\"2025-11-07\",\"FDABS\":\"2025-11-08\",\"OCCIL\":\"Y\",\"RTWRK\":\"N\",\"RGTIM\":\"2025-11-07T10:30:00Z\",\"NAINC\":\"Near Miss\",\"CAUSE\":\"Slippery Floor\"}"
+}
+

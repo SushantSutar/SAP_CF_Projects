@@ -1,0 +1,69 @@
+PROCEDURE "prCREATEUPDATESALES"(
+    IN ORDID BIGINT,
+    IN CUSID NVARCHAR(10),
+    IN PROID NVARCHAR(10),
+    IN QANTY INTEGER,
+    IN ODATE DATE,
+    OUT oORDID BIGINT
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  --DEFAULT SCHEMA <default_schema_name>
+  --    READS SQL DATA
+  AS 
+BEGIN 
+  /*************************************
+  Write your procedure logic
+  *************************************/
+  DECLARE COLUMN_ID INTEGER;
+  DECLARE QU NVARCHAR(150);
+  DECLARE SEQ NVARCHAR(100);
+  IF :ORDID = 0 THEN 
+  -- Insert new injury record
+  INSERT INTO SALES (
+      CUSID,
+      PROID,
+      QANTY,
+      ODATE,
+      ISDEL,
+      CRTDT,
+      CRTTM,
+      CRTBY,
+      CHNDT,
+      CHNTM,
+      CHNBY
+    )
+  VALUES (
+      :CUSID,
+      :PROID,
+      :QANTY,
+      :ODATE,
+      0,
+      CURRENT_DATE,
+      CURRENT_TIME,
+      SESSION_CONTEXT('APPLICATIONUSER'),
+      CURRENT_DATE,
+      CURRENT_TIME,
+      SESSION_CONTEXT('APPLICATIONUSER')
+    );
+  SELECT '"_SYS_SEQUENCE_' || COLUMN_ID || '_#0_#"' INTO SEQ
+  FROM TABLE_COLUMNS
+  WHERE (TABLE_NAME = 'SALES')
+    AND COLUMN_NAME = 'ORDID';
+  QU := 'select ' || SEQ || '.CURRVAL from DUMMY';
+  EXECUTE IMMEDIATE QU INTO oORDID;
+  ELSE 
+  -- Update existing injury record
+  UPDATE SALES
+  SET CUSID = :CUSID,
+    PROID = :PROID,
+    QANTY = :QANTY,
+    ODATE = :ODATE,
+    CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+    CHNDT = CURRENT_DATE,
+    CHNTM = CURRENT_TIME
+  WHERE ORDID = :ORDID
+    AND ISDEL = 0;
+  oORDID = :ORDID;
+END IF;
+END
