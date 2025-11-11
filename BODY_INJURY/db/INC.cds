@@ -18,6 +18,16 @@ context M {
             CAUSE : String(255) @title: 'CAUSE: Causes - contributing factors or causes of the incident';
     }
 
-    
-   
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity BDY {
+        key BDPID : Integer64   @title: 'BDPID: Primary key - unique incident identifier';
+            EMPID : String(40)  @title: 'EMPID: Foreign key of the SLS_T_INJEM table';
+            BDYPT : String(100) @title: 'BDYPT: Body Parts';
+            NOINJ : String(255) @title: 'NOINJ: Nature of injury';
+            SIDE_ : String(10)  @title: 'SIDE_: side';
+            BPDES : String(500) @title: 'BPDES: Body Parts Description';
+    }
+
+
 }

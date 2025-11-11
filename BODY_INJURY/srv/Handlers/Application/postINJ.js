@@ -48,10 +48,10 @@ async function createUpdateINJ(req) {
 
 
         
-        console.log("HELLO");
+        // console.log("HELLO");
 
         console.log(oINJID);
-        console.log("HELLO");
+        // console.log("HELLO");
         
        console.log(result);
        
