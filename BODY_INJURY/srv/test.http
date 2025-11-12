@@ -1,10 +1,20 @@
 ###
 POST http://localhost:4004/odata/v4/test-portal-am/mjicdnmodicncdcc
 Content-Type: application/json
- 
+# POST http://localhost:4004/odata/v4/test-portal-am/rlQ2Em7VGztsJeed
+# Content-Type: application/json
 # {
 #   "D4OXYPALUYAIDNSO": "{\"INJID\":3,\"EMPID\":\"SLS1380\",\"EMPNM\":\"Piyush Zagade\",\"SUPVR\":\"NIDHI\",\"TPHNE\":\"3453452345\",\"CLSSF\":\"Injury\",\"LDWRK\":\"2025-10-07\",\"FDABS\":\"2025-11-08\",\"OCCIL\":\"Y\",\"RTWRK\":\"Y\",\"RGTIM\":\"2025-11-07T10:30:00Z\",\"NAINC\":\"Near Miss\",\"CAUSE\":\"Slippery Floor\"}"
 # }
+# {
+#   "A23EMOI12NM34ML1": "{\"BDPID\":0,\"EMPID\":\"SLS1382\",\"BDYPT\":\"Right\",\"NOINJ\":\"top\",\"SIDE_\":\"top\",\"BPDES\":\"head\"}"
+# }
+
+# {
+#   "D4OXYPALUYAIDNSO": "[{\"INJID\":0,\"EMPID\":\"SLS1380\",\"EMPNM\":\"Piyush Zagade\",\"SUPVR\":\"NIDHI\",\"TPHNE\":\"3453452345\",\"CLSSF\":\"Injury\",\"LDWRK\":\"2025-10-07\",\"FDABS\":\"2025-11-08\",\"OCCIL\":\"Y\",\"RTWRK\":\"Y\",\"RGTIM\":\"2025-11-07T10:30:00Z\",\"NAINC\":\"Near Miss\",\"CAUSE\":\"Slippery Floor\"},{\"INJID\":0,\"EMPID\":\"SLS1382\",\"EMPNM\":\"Rahul Patel\",\"SUPVR\":\"Priya Desai\",\"TPHNE\":\"9876543210\",\"CLSSF\":\"Accident\",\"LDWRK\":\"2025-10-01\",\"FDABS\":\"2025-10-02\",\"OCCIL\":\"N\",\"RTWRK\":\"Y\",\"RGTIM\":\"2025-10-03T09:00:00Z\",\"NAINC\":\"Minor Cut\",\"CAUSE\":\"Sharp Edge\"}]"
+# }
+
 {
-  "A23EMOI12NM34ML1": "{\"BDPID\":0,\"EMPID\":\"SLS1382\",\"BDYPT\":\"Right\",\"NOINJ\":\"top\",\"SIDE_\":\"top\",\"BPDES\":\"head\"}"
+  "A23EMOI12NM34ML1": "[{\"BDPID\":0,\"EMPID\":\"SLS1382\",\"BDYPT\":\"Right Arm\",\"NOINJ\":\"Bruise\",\"SIDE_\":\"Top\",\"BPDES\":\"Minor bruise on upper right arm\"},{\"BDPID\":0,\"EMPID\":\"SLS1384\",\"BDYPT\":\"Left Leg\",\"NOINJ\":\"Sprain\",\"SIDE_\":\"Bottom\",\"BPDES\":\"Leg sprain near ankle\"}]"
 }
+
