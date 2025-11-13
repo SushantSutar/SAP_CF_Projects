@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_MEDI" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_M_MEDI"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MEDICAL_RECORD">
+    <resourceUri>MEDICAL_RECORD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="MEDICAL_RECORD">
+  <attributes>
+    <attribute id="EMPID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Foreign key - references EMPLOYEE_INFO(EMPID)"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="EMPID"/>
+    </attribute>
+    <attribute id="MRTYP" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Medical record type"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="MRTYP"/>
+    </attribute>
+    <attribute id="FLNAM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="File name"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="FLNAM"/>
+    </attribute>
+    <attribute id="MRDAT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Medical record date"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="MRDAT"/>
+    </attribute>
+    <attribute id="RCVDT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date received"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="RCVDT"/>
+    </attribute>
+    <attribute id="NOTES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Assigner or reviewer notes"/>
+      <keyMapping columnObjectName="MEDICAL_RECORD" columnName="NOTES"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="RECID" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Primary key - unique medical record ID"/>
+      <measureMapping columnObjectName="MEDICAL_RECORD" columnName="RECID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

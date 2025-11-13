@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_EMP" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_M_EMP"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="EMPLOYEE_INFO">
+    <resourceUri>EMPLOYEE_INFO</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="EMPLOYEE_INFO">
+  <attributes>
+    <attribute id="E__ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Primary key - unique employee identifier"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="E__ID"/>
+    </attribute>
+    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="case identifier all cases"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="EMPID"/>
+    </attribute>
+    <attribute id="FNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="First name"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="FNAME"/>
+    </attribute>
+    <attribute id="LNAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last name"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="LNAME"/>
+    </attribute>
+    <attribute id="PHON1" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Primary phone"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="PHON1"/>
+    </attribute>
+    <attribute id="PHON2" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Alternate phone"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="PHON2"/>
+    </attribute>
+    <attribute id="EMAIL" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Primary email address"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="AEMAL" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Alternate email address"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="AEMAL"/>
+    </attribute>
+    <attribute id="GNDR" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Gender (M/F/O)"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="GNDR"/>
+    </attribute>
+    <attribute id="DOB" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date of birth"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="DOB"/>
+    </attribute>
+    <attribute id="AGE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Employee age"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="AGE"/>
+    </attribute>
+    <attribute id="SAPAD" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP address"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="SAPAD"/>
+    </attribute>
+    <attribute id="ACTAD" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Actual address"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="ACTAD"/>
+    </attribute>
+    <attribute id="PROV" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Province"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="PROV"/>
+    </attribute>
+    <attribute id="CITY" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="City"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="CITY"/>
+    </attribute>
+    <attribute id="POSTC" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Postal code"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="POSTC"/>
+    </attribute>
+    <attribute id="SIN" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Social Insurance Number"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="SIN"/>
+    </attribute>
+    <attribute id="SAMES" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Same as SAP address flag (Y/N)"/>
+      <keyMapping columnObjectName="EMPLOYEE_INFO" columnName="SAMES"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

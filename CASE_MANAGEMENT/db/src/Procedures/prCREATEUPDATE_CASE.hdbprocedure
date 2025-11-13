@@ -1,0 +1,83 @@
+PROCEDURE "prCREATEUPDATE_CASE"(
+    IN C__ID BIGINT,
+    IN CASEI NVARCHAR(100),
+    IN EMPID NVARCHAR(20),
+    IN ASEHS NVARCHAR(100),
+    IN BTYPE NVARCHAR(50),
+    IN CDSTS NVARCHAR(50),
+    IN FRTWD DATE,
+    IN APDTD DATE,
+    IN DISDT DATE,
+    IN LSTWK DATE,
+    IN WKSTS NVARCHAR(50),
+    IN CSTS  NVARCHAR(50),
+    IN BCSRT DATE,
+    IN BCEND DATE,
+    IN LOSRV NVARCHAR(50),
+    IN LNKFL NVARCHAR(255),
+    OUT OC__ID BIGINT
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+   /*************************************
+      Procedure: prCREATEUPDATE_CASE
+      Purpose  : Insert or update CASE_MANAGEMENT record
+   *************************************/
+
+   DECLARE COLUMN_ID INTEGER;
+   DECLARE QU NVARCHAR(200);
+   DECLARE SEQ NVARCHAR(150);
+
+   -- If C__ID = 0 → Insert new case
+   IF :C__ID = 0 THEN
+       INSERT INTO CASE_MANAGEMENT (
+           CASEI, EMPID, ASEHS, BTYPE, CDSTS, FRTWD, APDTD, DISDT, LSTWK, 
+           WKSTS, CSTS, BCSRT, BCEND, LOSRV, LNKFL,
+           ISDEL, CRTDT, CRTTM, CRTBY, CHNDT, CHNTM, CHNBY
+       ) VALUES (
+           :CASEI, :EMPID, :ASEHS, :BTYPE, :CDSTS, :FRTWD, :APDTD, :DISDT, :LSTWK,
+           :WKSTS, :CSTS, :BCSRT, :BCEND, :LOSRV, :LNKFL,
+           '0', CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'),
+           CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER')
+       );
+
+       -- Fetch identity (C__ID) from system sequence
+       SELECT COLUMN_ID INTO COLUMN_ID 
+       FROM TABLE_COLUMNS 
+       WHERE TABLE_NAME = 'CASE_MANAGEMENT' AND COLUMN_NAME = 'C__ID';
+
+       SELECT '"_SYS_SEQUENCE_' || COLUMN_ID || '_#0_#"' INTO SEQ FROM DUMMY;
+
+       QU := 'SELECT ' || SEQ || '.CURRVAL FROM DUMMY';
+       EXECUTE IMMEDIATE QU INTO OC__ID;
+
+   ELSE
+       -- Update existing record
+       UPDATE CASE_MANAGEMENT
+       SET 
+           CASEI = :CASEI,
+           EMPID = :EMPID,
+           ASEHS = :ASEHS,
+           BTYPE = :BTYPE,
+           CDSTS = :CDSTS,
+           FRTWD = :FRTWD,
+           APDTD = :APDTD,
+           DISDT = :DISDT,
+           LSTWK = :LSTWK,
+           WKSTS = :WKSTS,
+           CSTS  = :CSTS,
+           BCSRT = :BCSRT,
+           BCEND = :BCEND,
+           LOSRV = :LOSRV,
+           LNKFL = :LNKFL,
+           CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+           CHNDT = CURRENT_DATE,
+           CHNTM = CURRENT_TIME
+       WHERE C__ID = :C__ID AND ISDEL = '0';
+
+       OC__ID = :C__ID;
+   END IF;
+
+END;

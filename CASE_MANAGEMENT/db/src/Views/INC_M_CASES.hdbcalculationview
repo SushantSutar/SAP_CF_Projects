@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_CASES" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="INC_M_CASE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CASE_MANAGEMENT">
+    <resourceUri>CASE_MANAGEMENT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="CASE_MANAGEMENT">
+  <attributes>
+    <attribute id="CASEI" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="case identifier all cases"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="CASEI"/>
+    </attribute>
+    <attribute id="EMPID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Foreign key - references EMPLOYEE_INFO(EMPID)"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="EMPID"/>
+    </attribute>
+    <attribute id="ASEHS" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Assigned to EHS representative"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="ASEHS"/>
+    </attribute>
+    <attribute id="BTYPE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Benefit type"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="BTYPE"/>
+    </attribute>
+    <attribute id="CDSTS" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Claim decision status"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="CDSTS"/>
+    </attribute>
+    <attribute id="FRTWD" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Forecasted return to work date"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="FRTWD"/>
+    </attribute>
+    <attribute id="APDTD" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Approved to date"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="APDTD"/>
+    </attribute>
+    <attribute id="DISDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date of disability"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="DISDT"/>
+    </attribute>
+    <attribute id="LSTWK" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last date worked"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="LSTWK"/>
+    </attribute>
+    <attribute id="WKSTS" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Work status"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="WKSTS"/>
+    </attribute>
+    <attribute id="CSTS" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Case status"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="CSTS"/>
+    </attribute>
+    <attribute id="BCSRT" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Benefit claim start date"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="BCSRT"/>
+    </attribute>
+    <attribute id="BCEND" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Benefit claim end date"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="BCEND"/>
+    </attribute>
+    <attribute id="LOSRV" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Length of service"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="LOSRV"/>
+    </attribute>
+    <attribute id="LNKFL" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Link to file or document"/>
+      <keyMapping columnObjectName="CASE_MANAGEMENT" columnName="LNKFL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="C__ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Primary key - unique case identifier"/>
+      <measureMapping columnObjectName="CASE_MANAGEMENT" columnName="C__ID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

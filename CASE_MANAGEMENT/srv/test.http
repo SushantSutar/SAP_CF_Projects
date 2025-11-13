@@ -1,0 +1,42 @@
+###
+POST http://localhost:4004/odata/v4/my/CASErlQ2Em7VGzts
+Content-Type: application/json
+
+###
+POST http://localhost:4004/odata/v4/my/rlQ2Em7VGztsJeed
+Content-Type: application/json
+
+###
+POST http://localhost:4004/odata/v4/my/MEDInsiducnsiocc
+Content-Type: application/json
+
+###
+POST http://localhost:4004/odata/v4/my/ATTACHdfghjuyytr
+Content-Type: application/json
+
+# {
+#   "A23EMOI12NM34ML1": "[{\"E__ID\":0,\"EMPID\":\"SLS8\",\"FNAME\":\"Sushant\",\"LNAME\":\"Sutar\",\"PHON1\":\"8356952592\",\"PHON2\":\"9923169107\",\"EMAIL\":\"sushant@gmail.com\",\"AEMAL\":\"sutar@gmail.com\",\"GNDR\":\"M\",\"DOB\":\"1990-05-10\",\"AGE\":24,\"SAPAD\":\"sangvi\",\"ACTAD\":\"old sangvi\",\"PROV\":\"priyadarshani nagar\",\"CITY\":\"pune\",\"POSTC\":\"411027\",\"SIN\":\"SIN1001\",\"SAMES\":\"Y\"},{\"E__ID\":0,\"EMPID\":\"SLS9\",\"FNAME\":\"tanisha\",\"LNAME\":\"badole\",\"PHON1\":\"5559876\",\"PHON2\":\"5554321\",\"EMAIL\":\"tanisha@gmail.com\",\"AEMAL\":\"badole@gmail.com\",\"GNDR\":\"F\",\"DOB\":\"1992-08-22\",\"AGE\":32,\"SAPAD\":\"456 SAP Ave, Vancouver\",\"ACTAD\":\"456 Actual Ave, Vancouver\",\"PROV\":\"British Columbia\",\"CITY\":\"indore\",\"POSTC\":\"452001\",\"SIN\":\"SIN1002\",\"SAMES\":\"N\"}]"
+# }
+
+# {
+#   "A23EMOI12NM34ML2": "[{\"C__ID\":0,\"CASEI\":\"CASE6\",\"EMPID\":\"SLS8\",\"ASEHS\":\"John Doe\",\"BTYPE\":\"Short Term Disability\",\"CDSTS\":\"Pending\",\"FRTWD\":\"2025-12-01\",\"APDTD\":\"2025-12-15\",\"DISDT\":\"2025-11-01\",\"LSTWK\":\"2025-10-28\",\"WKSTS\":\"Off Work\",\"CSTS\":\"Open\",\"BCSRT\":\"2025-11-05\",\"BCEND\":\"2025-12-20\",\"LOSRV\":\"5 years\",\"LNKFL\":\"/files/case001.pdf\"},{\"C__ID\":0,\"CASEI\":\"CASE7\",\"EMPID\":\"SLS9\",\"ASEHS\":\"Jane Smith\",\"BTYPE\":\"Long Term Disability\",\"CDSTS\":\"Approved\",\"FRTWD\":\"2026-01-10\",\"APDTD\":\"2026-01-15\",\"DISDT\":\"2025-11-20\",\"LSTWK\":\"2025-11-15\",\"WKSTS\":\"On Leave\",\"CSTS\":\"Closed\",\"BCSRT\":\"2025-11-25\",\"BCEND\":\"2026-01-20\",\"LOSRV\":\"3 years\",\"LNKFL\":\"/files/case002.pdf\"}]"
+# }
+
+# {
+#   "A23EMOI12NM34ML3": "[{\"RECID\":0,\"EMPID\":\"SLS1\",\"MRTYP\":\"Doctor Report\",\"FLNAM\":\"/files/medical_doc_001.pdf\",\"MRDAT\":\"2025-11-10\",\"RCVDT\":\"2025-11-11\",\"NOTES\":\"Initial medical assessment uploaded.\"},{\"RECID\":0,\"EMPID\":\"SLS6\",\"MRTYP\":\"X-Ray Report\",\"FLNAM\":\"/files/xray_scan_002.pdf\",\"MRDAT\":\"2025-11-12\",\"RCVDT\":\"2025-11-13\",\"NOTES\":\"Follow-up X-Ray report for right leg fracture.\"}]"
+# }
+
+
+# {
+#   "A23EMOI12NM34ML4": "[{\"ATTID\":0,\"EMPID\":\"SLS1\",\"CASEI\":\"CASE6\",\"FLNAM\":\"injury_photo_001.jpg\",\"FLTYP\":\"image/jpeg\",\"UPDDT\":\"2025-11-10\",\"FLPTH\":\"/attachments/injury_photo_001.jpg\"},{\"ATTID\":0,\"EMPID\":\"SLS2\",\"CASEI\":\"CASE7\",\"FLNAM\":\"medical_report_002.pdf\",\"FLTYP\":\"application/pdf\",\"UPDDT\":\"2025-11-12\",\"FLPTH\":\"/attachments/medical_report_002.pdf\"},{\"ATTID\":0,\"EMPID\":\"SLS3\",\"CASEI\":\"CASE8\",\"FLNAM\":\"xray_003.png\",\"FLTYP\":\"image/png\",\"UPDDT\":\"2025-11-13\",\"FLPTH\":\"/attachments/xray_003.png\"}]"
+# }
+
+
+###
+POST http://localhost:4004/odata/v4/my/SENDSMS
+Content-Type: application/json
+
+{
+  "to" : "+91**********", // enter senders email
+  "message" : "hello"
+}

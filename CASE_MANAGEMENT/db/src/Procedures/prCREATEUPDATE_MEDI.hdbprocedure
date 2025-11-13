@@ -1,0 +1,62 @@
+PROCEDURE "prCREATEUPDATE_MEDI"(
+    IN RECID BIGINT,
+    IN EMPID NVARCHAR(20),
+    IN MRTYP NVARCHAR(100),
+    IN FLNAM NVARCHAR(255),
+    IN MRDAT DATE,
+    IN RCVDT DATE,
+    IN NOTES CLOB,
+    OUT ORECID BIGINT
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+    /*************************************
+      Procedure: prCREATEUPDATE_MEDREC
+      Purpose  : Insert or update MEDICAL_RECORD record
+    *************************************/
+
+    DECLARE COLUMN_ID INTEGER;
+    DECLARE QU NVARCHAR(200);
+    DECLARE SEQ NVARCHAR(150);
+
+    -- Insert new record if RECID = 0
+    IF :RECID = 0 THEN
+        INSERT INTO MEDICAL_RECORD (
+            EMPID, MRTYP, FLNAM, MRDAT, RCVDT, NOTES,
+            ISDEL, CRTDT, CRTTM, CRTBY, CHNDT, CHNTM, CHNBY
+        ) VALUES (
+            :EMPID, :MRTYP, :FLNAM, :MRDAT, :RCVDT, :NOTES,
+            '0', CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'),
+            CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER')
+        );
+
+        -- Fetch auto-generated identity value
+        SELECT COLUMN_ID INTO COLUMN_ID 
+        FROM TABLE_COLUMNS 
+        WHERE TABLE_NAME = 'MEDICAL_RECORD' AND COLUMN_NAME = 'RECID';
+
+        SELECT '"_SYS_SEQUENCE_' || COLUMN_ID || '_#0_#"' INTO SEQ FROM DUMMY;
+        QU := 'SELECT ' || SEQ || '.CURRVAL FROM DUMMY';
+        EXECUTE IMMEDIATE QU INTO ORECID;
+
+    ELSE
+        -- Update existing record
+        UPDATE MEDICAL_RECORD
+        SET
+            EMPID = :EMPID,
+            MRTYP = :MRTYP,
+            FLNAM = :FLNAM,
+            MRDAT = :MRDAT,
+            RCVDT = :RCVDT,
+            NOTES = :NOTES,
+            CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+            CHNDT = CURRENT_DATE,
+            CHNTM = CURRENT_TIME
+        WHERE RECID = :RECID AND ISDEL = '0';
+
+        ORECID = :RECID;
+    END IF;
+
+END;

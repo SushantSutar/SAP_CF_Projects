@@ -1,0 +1,87 @@
+PROCEDURE "prCREATEUPDATE_EMP"(
+    IN E__ID BIGINT,
+    IN EMPID NVARCHAR(20),
+    IN FNAME NVARCHAR(100),
+    IN LNAME NVARCHAR(100),
+    IN PHON1 NVARCHAR(50),
+    IN PHON2 NVARCHAR(50),
+    IN EMAIL NVARCHAR(100),
+    IN AEMAL NVARCHAR(100),
+    IN GNDR  NVARCHAR(1),
+    IN DOB   DATE,
+    IN AGE   INTEGER,
+    IN SAPAD NVARCHAR(255),
+    IN ACTAD NVARCHAR(255),
+    IN PROV  NVARCHAR(100),
+    IN CITY  NVARCHAR(100),
+    IN POSTC NVARCHAR(20),
+    IN SIN   NVARCHAR(50),
+    IN SAMES NVARCHAR(1),
+    OUT OE__ID BIGINT
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+   /*************************************
+      Procedure: prCREATEUPDATE_EMP
+      Purpose  : Insert or update EMPLOYEE_INFO record
+   *************************************/
+
+   DECLARE COLUMN_ID INTEGER;
+   DECLARE QU NVARCHAR(150);
+   DECLARE SEQ NVARCHAR(100);
+
+   IF :E__ID = 0 THEN
+       -- Insert new employee record
+       INSERT INTO EMPLOYEE_INFO (
+         
+           EMPID, FNAME, LNAME, PHON1, PHON2, EMAIL, AEMAL, GNDR, DOB, AGE,
+           SAPAD, ACTAD, PROV, CITY, POSTC, SIN, SAMES,
+           ISDEL, CRTDT, CRTTM, CRTBY, CHNDT, CHNTM, CHNBY
+       ) VALUES (
+           :EMPID, :FNAME, :LNAME, :PHON1, :PHON2, :EMAIL, :AEMAL, :GNDR, :DOB, :AGE,
+           :SAPAD, :ACTAD, :PROV, :CITY, :POSTC, :SIN, :SAMES,
+           '0', CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'),
+           CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER')
+       );
+
+       -- Get the generated identity value for E__ID
+       SELECT COLUMN_ID INTO COLUMN_ID 
+       FROM TABLE_COLUMNS 
+       WHERE TABLE_NAME = 'EMPLOYEE_INFO' AND COLUMN_NAME = 'E__ID';
+
+       SELECT '"_SYS_SEQUENCE_' || COLUMN_ID || '_#0_#"' INTO SEQ FROM DUMMY;
+       QU := 'SELECT ' || SEQ || '.CURRVAL FROM DUMMY';
+       EXECUTE IMMEDIATE QU INTO OE__ID;
+
+   ELSE
+       -- Update existing employee record
+       UPDATE EMPLOYEE_INFO
+       SET
+           EMPID = :EMPID,
+           FNAME = :FNAME,
+           LNAME = :LNAME,
+           PHON1 = :PHON1,
+           PHON2 = :PHON2,
+           EMAIL = :EMAIL,
+           AEMAL = :AEMAL,
+           GNDR  = :GNDR,
+           DOB   = :DOB,
+           AGE   = :AGE,
+           SAPAD = :SAPAD,
+           ACTAD = :ACTAD,
+           PROV  = :PROV,
+           CITY  = :CITY,
+           POSTC = :POSTC,
+           SIN   = :SIN,
+           SAMES = :SAMES,
+           CHNBY = SESSION_CONTEXT('APPLICATIONUSER'),
+           CHNDT = CURRENT_DATE,
+           CHNTM = CURRENT_TIME
+       WHERE E__ID = :E__ID AND ISDEL = '0';
+
+       OE__ID = :E__ID;
+   END IF;
+
+END;

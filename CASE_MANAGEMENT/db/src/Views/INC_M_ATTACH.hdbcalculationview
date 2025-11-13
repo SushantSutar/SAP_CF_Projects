@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_M_ATTACH" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_M_ATTACH"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ATTACHMENT">
+    <resourceUri>ATTACHMENT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="ATTACHMENT">
+  <attributes>
+    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Foreign key - references EMPLOYEE_INFO(EMPID)"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="EMPID"/>
+    </attribute>
+    <attribute id="CASEI" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Optional foreign key - references CASE_MANAGEMENT(CASEI)"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="CASEI"/>
+    </attribute>
+    <attribute id="FLNAM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="File name of attachment"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="FLNAM"/>
+    </attribute>
+    <attribute id="FLTYP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="File type (PDF, DOC, etc.)"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="FLTYP"/>
+    </attribute>
+    <attribute id="UPDDT" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Upload date"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="UPDDT"/>
+    </attribute>
+    <attribute id="FLPTH" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="File storage path"/>
+      <keyMapping columnObjectName="ATTACHMENT" columnName="FLPTH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ATTID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Primary key - unique attachment ID"/>
+      <measureMapping columnObjectName="ATTACHMENT" columnName="ATTID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>
